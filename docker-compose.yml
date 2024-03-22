@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  flare:
+    image: flaresolverr/flaresolverr:latest
+    ports:
+      - 8191:8191
+    environment:
+      - LOG_LEVEL=debug
