@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   flare:
-    image: flaresolverr/flaresolverr:latest
+    image: flaresolverr/flaresolverr:v3.3.16
     ports:
       - 8191:8191
     environment:

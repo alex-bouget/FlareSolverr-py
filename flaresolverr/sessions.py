@@ -26,16 +26,21 @@ class Sessions:
             if proxy_password:
                 data["proxy"]["password"] = proxy_password
         result = request_to_flare(self._url, "sessions.create", **data)
+        if not result:
+            return False
         if result["status"] == "ok":
             return result["session"]
         return False
 
-    def list(self) -> dict:
+    def list(self) -> dict | bool:
         """Returns a list of all the active sessions. More for debugging
         if you are curious to see how many sessions are running. You should
         always make sure to properly close each session when you are done
         using them as too many may slow your computer down."""
-        return request_to_flare(self._url, "sessions.list")["sessions"]
+        return (
+            request_to_flare(self._url, "sessions.list") or
+            {"sessions": False}
+        )["sessions"]
 
     def destroy(self, session: str) -> bool:
         """This will properly shutdown a browser instance and remove all files

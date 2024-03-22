@@ -1,6 +1,7 @@
 import logging
 from .logger import setup_logger
 from .sessions import Sessions
+from .request import Request
 
 
 class FlareSolverr:
@@ -16,3 +17,4 @@ class FlareSolverr:
         setup_logger(log_level)
         self._logger = logging.getLogger("flaresolverr")
         self.sessions = Sessions(url)
+        self.request = Request(url)
